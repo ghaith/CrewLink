@@ -57,7 +57,14 @@ export default class GameReader {
 		// const processOpen = getProcesses().find(
 		// 	(p) => p.szExeFile === 'Among Us.exe'
 		// );
-		const processOpen = true;
+
+		//Harder way to find if a process is open
+		let processOpen = false;
+		try {
+		   processOpen = openProcess('Among Us.exe') !== null;
+		} catch {
+			processOpen = false;
+		}
 		if (!this.amongUs && processOpen) {
 			// If process just opened
 			try {
